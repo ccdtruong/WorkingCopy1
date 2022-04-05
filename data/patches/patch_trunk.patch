@@ -1,0 +1,125 @@
+Index: buildWin.bat
+===================================================================
+--- buildWin.bat	(revision 69005)
++++ buildWin.bat	(working copy)
+@@ -7,6 +7,6 @@
+ 
+ call win_build.bat %1 %2 %3 %4
+ 
+-popd
+ 
++
+ :end
+\ No newline at end of file
+Index: installAndroid.bat
+===================================================================
+--- installAndroid.bat	(revision 69005)
++++ installAndroid.bat	(working copy)
+@@ -17,8 +17,7 @@
+ set ANDROID_FRAMEWORK_DIR=%ANDROID_FRAMEWORK_PATH%
+ call install.bat %CONFIG%
+ 
+-popd
+-popd
+ 
++
+ echo.
+ pause
+\ No newline at end of file
+Index: patches/patch_sources.patch
+===================================================================
+--- patches/patch_sources.patch	(nonexistent)
++++ patches/patch_sources.patch	(working copy)
+@@ -0,0 +1,14 @@
++Index: source/Utils.cpp
++===================================================================
++--- source/Utils.cpp	(revision 69005)
+++++ source/Utils.cpp	(working copy)
++@@ -39,4 +39,8 @@
++ {
++ 	int random = rand() % (max - min + 1) + min;
++ 	return random;
+++}
+++int Add(int a, int b)
+++{
+++	return a + b;
++ }
++\ No newline at end of file
+Index: patches/patch_trunk.patch
+===================================================================
+--- patches/patch_trunk.patch	(nonexistent)
++++ patches/patch_trunk.patch	(working copy)
+@@ -0,0 +1,47 @@
++Index: buildWin.bat
++===================================================================
++--- buildWin.bat	(revision 69005)
+++++ buildWin.bat	(working copy)
++@@ -7,6 +7,6 @@
++ 
++ call win_build.bat %1 %2 %3 %4
++ 
++-popd
++ 
+++
++ :end
++\ No newline at end of file
++Index: installAndroid.bat
++===================================================================
++--- installAndroid.bat	(revision 69005)
+++++ installAndroid.bat	(working copy)
++@@ -17,8 +17,7 @@
++ set ANDROID_FRAMEWORK_DIR=%ANDROID_FRAMEWORK_PATH%
++ call install.bat %CONFIG%
++ 
++-popd
++-popd
++ 
+++
++ echo.
++ pause
++\ No newline at end of file
++Index: patches/patch_sources.patch
++===================================================================
++--- patches/patch_sources.patch	(nonexistent)
+++++ patches/patch_sources.patch	(working copy)
++@@ -0,0 +1,14 @@
+++Index: source/Utils.cpp
+++===================================================================
+++--- source/Utils.cpp	(revision 69005)
++++++ source/Utils.cpp	(working copy)
+++@@ -39,4 +39,8 @@
+++ {
+++ 	int random = rand() % (max - min + 1) + min;
+++ 	return random;
++++}
++++int Add(int a, int b)
++++{
++++	return a + b;
+++ }
+++\ No newline at end of file
+Index: sources/source/Utils.cpp
+===================================================================
+--- sources/source/Utils.cpp	(revision 69005)
++++ sources/source/Utils.cpp	(working copy)
+@@ -3,7 +3,7 @@
+ #include <math.h>
+ #include <stdlib.h>
+ 
+-bool Utils::IsPointInRect(Vector2 point, Rect rect)
++bool Utils::IsPointInRectangle(Vector2 point, Rect rect)
+ {
+ 	return (point.x >= rect.position.x && point.x <= (rect.position.x + rect.size.x) 
+ 		 && point.y >= rect.position.y && point.y <= (rect.position.y + rect.size.y));		
+@@ -39,4 +39,11 @@
+ {
+ 	int random = rand() % (max - min + 1) + min;
+ 	return random;
++}
++int Add(int a, int b)
++{
++	return a + b;
++}int Add(int a, int b)
++{
++	return a + b;
+ }
+\ No newline at end of file
